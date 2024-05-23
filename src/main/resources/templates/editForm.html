@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Mise à jour de la commande</title>
+</head>
+<body>
+<h1>Mise à jour de la Commande</h1>
+<form th:action="@{/update/{id}(id=${commande.id})}" method="post" th:object="${commande}">
+    <!-- Champ caché pour l'ID -->
+    <input type="hidden" th:field="*{id}" />
+
+    <label for="chambre">Chambre :</label>
+    <input type="text" th:field="*{chambre}" /><br />
+    <span th:if="${#fields.hasErrors('chambre')}" th:errors="*{chambre}"></span><br />
+
+    <label for="nombreDeRepas">Nombre de repas :</label>
+    <input type="text" th:field="*{nombreDeRepas}" /><br />
+    <span th:if="${#fields.hasErrors('nombreDeRepas')}" th:errors="*{nombreDeRepas}"></span><br />
+
+    <label for="heure">Heure de livraison (entre 6h et 10h) :</label>
+    <input type="time" th:field="*{heure}" required /><br />
+    <span th:if="${#fields.hasErrors('heure')}" th:errors="*{heure}"></span><br />
+
+    <label for="commentaire">Commentaire :</label> <br />
+    <textarea th:field="*{commentaires}" rows="10" cols="50"></textarea>
+    <span th:if="${#fields.hasErrors('commentaires')}" th:errors="*{commentaires}"></span><br />
+
+    <br />
+    <input type="submit" value="Mettre à jour" />
+</form>
+</body>
+</html>

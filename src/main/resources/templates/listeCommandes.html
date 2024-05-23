@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Commandes de Petit Déjeuner</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h2>Liste des Commandes de Petit Déjeuner</h2>
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Chambre</th>
+                <th>Nombre de Repas</th>
+                <th>Heure</th>
+                <th>Commentaires</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="commande : ${commandes}">
+                <td th:text="${commande.id}"></td>
+                <td th:text="${commande.chambre}"></td>
+                <td th:text="${commande.nombreDeRepas}"></td>
+                <td th:text="${commande.heure}"></td>
+                <td th:text="${commande.commentaires}"></td>
+                <td>
+                    <a th:href="@{'/edit/' + ${commande.id}}" class="btn btn-primary">Modifier</a>
+                    <a th:href="@{'/delete/' + ${commande.id}}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette commande?')">Supprimer</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="/formulaire" class="btn btn-success">Ajouter une nouvelle commande</a>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
